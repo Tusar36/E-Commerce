@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const imageSchema = new mongoose.Schema({
+  productId: {
+    type: String,
+    required: true,
+  },
+  url: {
+    type: String,
+    required: true,
+  },
+});
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -14,13 +25,16 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minLength: 8,
   },
   address: {
     type: String,
     required: true,
   },
-  image: {},
+  image: [imageSchema],
+  role: {
+    type: Number,
+    default: 1,
+  },
 });
 const User = mongoose.model("User", UserSchema);
 module.exports = User;
