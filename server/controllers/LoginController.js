@@ -19,10 +19,11 @@ const LoginController = async (req, res) => {
     try {
       const token = JWT.sign({ _id: checkEmail._id }, process.env.JWT_TOKEN);
       res.status(200).json({
+        _id: checkEmail._id,
         name: checkEmail.name,
         email: email,
         image: checkEmail.image,
-        _id: checkEmail._id,
+        role: checkEmail.role,
         token,
       });
     } catch (error) {

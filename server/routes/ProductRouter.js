@@ -6,6 +6,6 @@ const getAllProduct = require("../controllers/getAllProduct");
 const createProduct = require("../controllers/createProduct");
 
 router.get("/get/all", getAllProduct);
-router.post("/create");
+router.post("/create", createProduct);
 
 module.exports = router;
