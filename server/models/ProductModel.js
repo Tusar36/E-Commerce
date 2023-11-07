@@ -47,8 +47,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, "Enter name for review"],
       },
-      rating: {
+      email: {
         type: String,
+        required: [true, "Enter name for review"],
+      },
+      rating: {
+        type: Number,
         required: [true, "Enter rating for review"],
       },
       comment: {
