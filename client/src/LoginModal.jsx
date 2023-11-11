@@ -10,7 +10,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
       {/* Login Form  and Register Form*/}
 
       <div className="fixed top-0 w-screen h-screen  flex justify-center items-center">
-        <div className="w-[500px] h-[600px] bg-white">
+        <div className="w-[500px] h-[600px] bg-white overflow-auto pb-10">
           <div className="flex justify-end">
             {/* Close button */}
             <button
