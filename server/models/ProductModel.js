@@ -31,13 +31,9 @@ const productSchema = new mongoose.Schema({
   },
   images: [
     {
-      productId: {
-        type: String,
-        required: [true, "Enter productId for images"],
-      },
       url: {
         type: String,
-        required: [true, "Enter Url for images"],
+        required: true,
       },
     },
   ],

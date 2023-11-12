@@ -1,16 +1,5 @@
 const mongoose = require("mongoose");
 
-const imageSchema = new mongoose.Schema({
-  productId: {
-    type: String,
-    required: true,
-  },
-  url: {
-    type: String,
-    required: true,
-  },
-});
-
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -30,7 +19,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: { imageSchema },
+  image: { url:{
+    type:String,
+    required:true
+  } },
   role: {
     type: Number,
     default: 1,
