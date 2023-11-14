@@ -1,5 +1,5 @@
-const Products = require("../models/ProductModel");
-const User = require("../models/UserModel");
+const Products = require("../../models/ProductModel");
+const User = require("../../models/UserModel");
 
 const addReview = async (req, res) => {
   const id = req.params.id.trim("");

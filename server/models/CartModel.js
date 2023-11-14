@@ -6,15 +6,38 @@ const CartSchema = new mongoose.Schema({
     required: true,
     trim:true
   },
-  productID: {
-    type: String,
-    required: true,
-    trim:true
-  },
-  stock:{
-    type:Number,
-    required:true
-  }
+  products:[
+    {
+      id:{
+        type:String,
+        required:true
+      },
+      name: {
+        type: String,
+        required: [true, "Enter name"],
+      },
+      price: {
+        type: Number,
+        required: [true, "Enter price"],
+      },
+      discount: {
+        type: Number,
+        required: [true, "Enter discount"],
+      },
+      images: [
+        {
+          url: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      quantity:{
+        type:Number,
+        required:true
+      }
+    }
+  ]
 });
 
 module.exports = mongoose.model('cart',CartSchema)

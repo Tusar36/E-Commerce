@@ -1,4 +1,4 @@
-const product = require('../models/ProductModel')
+const product = require('../../models/ProductModel')
 
 const deleteProduct = async (req,res) =>{
     const id = req.params.id

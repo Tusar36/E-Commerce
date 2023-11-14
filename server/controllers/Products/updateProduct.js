@@ -1,4 +1,4 @@
-const product = require("../models/ProductModel");
+const product = require("../../models/ProductModel");
 
 const updateProduct = async (req, res) => {
   const id = req.params.id;

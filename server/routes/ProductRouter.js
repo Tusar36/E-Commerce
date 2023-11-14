@@ -2,12 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-const getAllProduct = require("../controllers/getAllProduct");
-const getProductDetails = require("../controllers/getProductDetails");
-const createProduct = require("../controllers/createProduct");
-const addReview = require("../controllers/addReview");
-const updateProduct = require("../controllers/updateProduct");
-const deleteProduct = require("../controllers/deleteProduct");
+const getAllProduct = require("../controllers/Products/getAllProduct");
+const getProductDetails = require("../controllers/Products/getProductDetails");
+const createProduct = require("../controllers/Products/createProduct");
+const addReview = require("../controllers/Review/addReview");
+const updateProduct = require("../controllers/Products/updateProduct");
+const deleteProduct = require("../controllers/Products/deleteProduct");
 
 router.get("/all", getAllProduct);
 router.get("/get/:id", getProductDetails);

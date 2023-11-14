@@ -1,4 +1,4 @@
-const user = require("../models/UserModel");
+const user = require("../../models/UserModel");
 const checkLogin = async (req, res) => {
   const id = req.userID._id.trim(" ");
   try {

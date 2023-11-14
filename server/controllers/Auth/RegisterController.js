@@ -1,4 +1,4 @@
-const user = require("../models/UserModel");
+const user = require("../../models/UserModel");
 const bcrypt = require("bcrypt");
 const RegisterController = async (req, res) => {
   const { email, name, password, address, image } = req.body;
