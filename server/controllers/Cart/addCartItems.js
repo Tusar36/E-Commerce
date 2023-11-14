@@ -38,7 +38,7 @@ const addCartItems = async (req, res) => {
         userID,
         products: [
           {
-            id: searchProduct._id,
+            productID: searchProduct._id,
             name:searchProduct.name,
             price:searchProduct.price,
             discount:searchProduct.discount,

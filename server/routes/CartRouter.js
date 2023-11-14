@@ -9,7 +9,7 @@ const deleteCartItems = require('../controllers/Cart/deleteCartItems')
 
 
 router.post('/add',addCartItems)
-router.delete('/delete/:id',deleteCartItems)
+router.delete('/delete',deleteCartItems)
 router.get('/get/:id',getCartItems)
 
 

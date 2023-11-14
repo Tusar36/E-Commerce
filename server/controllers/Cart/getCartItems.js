@@ -12,7 +12,7 @@ const getCartItems = async (req, res) => {
       })
     }
     res.status(200).json({
-      searchItem
+      result:searchItem
     })
     
   } catch (error) {
