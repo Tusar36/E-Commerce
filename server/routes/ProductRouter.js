@@ -9,7 +9,7 @@ const addReview = require("../controllers/Review/addReview");
 const updateProduct = require("../controllers/Products/updateProduct");
 const deleteProduct = require("../controllers/Products/deleteProduct");
 
-router.get("/all", getAllProduct);
+router.get("/get", getAllProduct);
 router.get("/get/:id", getProductDetails);
 router.post("/create", createProduct);
 router.post("/addReview/:id", addReview);
