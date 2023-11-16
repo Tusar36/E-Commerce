@@ -4,7 +4,9 @@ import Carousel from "./Carousel";
 const Home = () => {
   return (
   <>
-  <Carousel/>
+  <div className="">
+
+  </div>
   </>
   );
 };

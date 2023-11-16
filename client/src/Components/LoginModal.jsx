@@ -6,11 +6,11 @@ const LoginModal = ({ showModal, setShowModal }) => {
   const [LoginForm, setLoginForm] = useState(true);
   return (
     <>
-      <div className="fixed top-0 w-screen h-screen   transition opacity-80 bg-black "></div>
+      <div className="fixed top-0 w-screen h-screen  transition opacity-80 bg-black "></div>
       {/* Login Form  and Register Form*/}
 
       <div className="fixed top-0 w-screen h-screen  flex justify-center items-center">
-        <div className="w-[500px] h-[600px] bg-white overflow-auto pb-10">
+        <div className="w-[350px] h-[600px] bg-white overflow-auto pb-10 sm:w-[500px]">
           <div className="flex justify-end">
             {/* Close button */}
             <button

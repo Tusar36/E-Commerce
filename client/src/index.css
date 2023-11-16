@@ -5,3 +5,12 @@
 .nav-items {
   @apply py-2 px-4 text-lg;
 }
+.input-field{
+  @apply w-[80%] text-xl border border-black outline-none p-3
+}
+.navBar{
+  @apply w-screen flex bg-indigo-600 p-4 justify-between text-white sticky top-0 md:flex
+}
+.nav-Button{
+  @apply cursor-pointer nav-items bg-white text-black
+}
