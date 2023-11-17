@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-
+import PersonIcon from "@mui/icons-material/Person";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import FlagIcon from "@mui/icons-material/Flag";
+import FiberPinIcon from "@mui/icons-material/FiberPin";
+import HomeIcon from "@mui/icons-material/Home";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 const SignUp = ({ setLoginForm }) => {
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -9,6 +17,7 @@ const SignUp = ({ setLoginForm }) => {
     pin: "",
     country: "",
   });
+  const [showPassword, setShowPassword] = useState("password");
   const [showPicOption, setshowPicOption] = useState(false);
   return (
     <>
@@ -35,104 +44,156 @@ const SignUp = ({ setLoginForm }) => {
           </div>
         </label>
 
-        <input
-          type="text"
-          placeholder="Enter Your Name"
-          className="input-field"
-          value={userInfo.name}
-          onChange={(e) => {
-            setUserInfo({
-              email: userInfo.email,
-              password: userInfo.password,
-              address: userInfo.address,
-              name: e.target.value,
-            });
-          }}
-        />
+        <div className="input-container">
+          <div className="input-icon">
+            <PersonIcon />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Enter Your Email"
-          className="input-field"
-          value={userInfo.email}
-          onChange={(e) => {
-            setUserInfo({
-              email: e.target.value,
-              password: userInfo.password,
-              address: userInfo.address,
-              name: userInfo.name,
-            });
-          }}
-        />
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            className="input-field"
+            value={userInfo.name}
+            onChange={(e) => {
+              setUserInfo({
+                email: userInfo.email,
+                password: userInfo.password,
+                address: userInfo.address,
+                name: e.target.value,
+              });
+            }}
+          />
+          <div className="input-icon"></div>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Enter Your Password"
-          className="input-field"
-          value={userInfo.password}
-          onChange={(e) => {
-            setUserInfo({
-              email: userInfo.email,
-              password: e.target.value,
-              address: userInfo.address,
-              name: userInfo.name,
-            });
-          }}
-        />
+        <div className="input-container">
+          <div className="input-icon">
+            <EmailIcon />
+          </div>
+          <input
+            type="text"
+            placeholder="Enter Your Email"
+            className="input-field"
+            value={userInfo.email}
+            onChange={(e) => {
+              setUserInfo({
+                email: e.target.value,
+                password: userInfo.password,
+                address: userInfo.address,
+                name: userInfo.name,
+              });
+            }}
+          />
+          <div className="input-icon"></div>
+        </div>
 
-        <input
-          type="text"
-          placeholder="Enter Your Country Name"
-          className="input-field"
-          value={userInfo.country}
-          onChange={(e) => {
-            setUserInfo({
-              email: userInfo.email,
-              password: userInfo.password,
-              address: userInfo.address,
-              name: userInfo.name,
-              pin: userInfo.pin,
-              country: e.target.value,
-            });
-          }}
-        />
+        <div className="input-container">
+          <div className="input-icon">
+            <LockIcon />
+          </div>
+          <input
+            type={showPassword}
+            placeholder="Enter Your Password"
+            className="input-field"
+            value={userInfo.password}
+            onChange={(e) => {
+              setUserInfo({
+                email: userInfo.email,
+                password: e.target.value,
+                address: userInfo.address,
+                name: userInfo.name,
+              });
+            }}
+          />
+          <button
+            className="input-icon"
+            onClick={() => {
+              if (showPassword == "password") {
+                setShowPassword("text");
+              } else {
+                setShowPassword("password");
+              }
+            }}
+          >
+            {showPassword == "password" ? (
+              <VisibilityIcon />
+            ) : (
+              <VisibilityOffIcon />
+            )}
+          </button>
+        </div>
 
-        <input
-          type="text"
-          placeholder="Enter Your Pin Code"
-          className="input-field"
-          value={userInfo.pin}
-          onChange={(e) => {
-            setUserInfo({
-              email: userInfo.email,
-              password: userInfo.password,
-              address: userInfo.address,
-              name: userInfo.name,
-              pin: e.target.value,
-              country: userInfo.country,
-            });
-          }}
-        />
+        <div className="input-container">
+          <div className="input-icon">
+            <FlagIcon />
+          </div>
+          <input
+            type="text"
+            placeholder="Enter Your Country Name"
+            className="input-field"
+            value={userInfo.country}
+            onChange={(e) => {
+              setUserInfo({
+                email: userInfo.email,
+                password: userInfo.password,
+                address: userInfo.address,
+                name: userInfo.name,
+                pin: userInfo.pin,
+                country: e.target.value,
+              });
+            }}
+          />
+          <div className="input-icon"></div>
+        </div>
 
-        <input
-          type="text"
-          placeholder="Enter Your Address"
-          className="input-field"
-          value={userInfo.address}
-          onChange={(e) => {
-            setUserInfo({
-              email: userInfo.email,
-              password: userInfo.password,
-              address: e.target.value,
-              name: userInfo.name,
-              pin: userInfo.pin,
-              country: userInfo.country,
-            });
-          }}
-        />
+        <div className="input-container">
+          <div className="input-icon">
+            <FiberPinIcon />
+          </div>
+          <input
+            type="text"
+            placeholder="Enter Your Pin Code"
+            className="input-field"
+            value={userInfo.pin}
+            onChange={(e) => {
+              setUserInfo({
+                email: userInfo.email,
+                password: userInfo.password,
+                address: userInfo.address,
+                name: userInfo.name,
+                pin: e.target.value,
+                country: userInfo.country,
+              });
+            }}
+          />
+          <div className="input-icon"></div>
+        </div>
+
+        <div className="input-container">
+          <div className="input-icon">
+            <HomeIcon />
+          </div>
+          <input
+            type="text"
+            placeholder="Enter Your Address"
+            className="input-field"
+            value={userInfo.address}
+            onChange={(e) => {
+              setUserInfo({
+                email: userInfo.email,
+                password: userInfo.password,
+                address: e.target.value,
+                name: userInfo.name,
+                pin: userInfo.pin,
+                country: userInfo.country,
+              });
+            }}
+          />
+          <div className="input-icon"></div>
+        </div>
 
         <button className="bg-indigo-600 w-[80%] py-4 text-xl text-white">
-          Sign Up
+          Sign up <AppRegistrationIcon/>
         </button>
 
         <div className="mb-100px">

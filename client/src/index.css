@@ -3,14 +3,25 @@
 @tailwind utilities;
 
 .nav-items {
-  @apply py-2 px-4 text-lg;
+  @apply py-2 px-4 text-lg flex items-center gap-1;
 }
-.input-field{
-  @apply w-[80%] text-xl border border-black outline-none p-3
+.input-field {
+  @apply text-xl outline-none py-3 pr-3 w-[80%];
 }
-.navBar{
-  @apply w-screen flex bg-indigo-600 p-4 justify-between text-white sticky top-0 md:flex
+.navBar {
+  @apply w-screen flex bg-indigo-600 p-4 justify-between text-white sticky top-0 md:flex;
 }
-.nav-Button{
-  @apply cursor-pointer nav-items bg-white text-black
+.nav-Button {
+  @apply cursor-pointer nav-items bg-white text-black;
+}
+
+.input-icon {
+  @apply w-[50px]  flex justify-center items-center;
+}
+.input-container {
+  @apply w-[80%] border  border-black flex justify-between;
+}
+
+.active{
+  @apply text-yellow-500 border-b-2 border-b-yellow-500
 }
