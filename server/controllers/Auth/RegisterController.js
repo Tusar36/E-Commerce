@@ -1,7 +1,11 @@
 const user = require("../../models/UserModel");
 const bcrypt = require("bcrypt");
+
+
 const RegisterController = async (req, res) => {
-  const { email, name, password, address, image } = req.body;
+
+  const { email, name, password, address } = req.body
+
   const checkEmail = await user.findOne({ email });
   const checkName = await user.findOne({ name });
   if (checkEmail != null) {
@@ -17,16 +21,19 @@ const RegisterController = async (req, res) => {
   try {
     const salt = 10;
     const hashedPass = await bcrypt.hash(password, salt);
+
     await user.create({
       name,
       password: hashedPass,
       email,
       address,
-      image,
+      image:{url:req.imageURI},
     });
+
     res.status(200).json({
       message: "User Registred!",
     });
+    
   } catch (error) {
     res.status(500).json({
       message: error,
