@@ -21,7 +21,6 @@ const RegisterController = async (req, res) => {
   try {
     const salt = 10;
     const hashedPass = await bcrypt.hash(password, salt);
-
     await user.create({
       name,
       password: hashedPass,

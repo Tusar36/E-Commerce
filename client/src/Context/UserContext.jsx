@@ -8,6 +8,7 @@ export const UserContextProvider = ({ children }) => {
     name: "",
     email: "",
     image: "",
+    _id:"",
     isLogined: false,
     isAdmin: false,
   });

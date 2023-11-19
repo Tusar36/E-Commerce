@@ -9,6 +9,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import axios from "axios";
+import {toast} from 'react-toastify'
 
 const SignUp = ({ setLoginForm, setShowLoader }) => {
   const [userInfo, setUserInfo] = useState({
@@ -22,8 +23,8 @@ const SignUp = ({ setLoginForm, setShowLoader }) => {
   const [showPassword, setShowPassword] = useState("password");
   const [showPicOption, setshowPicOption] = useState(false);
 
-  const [image, setImage] = useState();
-
+  const [image, setImage] = useState('http://res.cloudinary.com/db474cgn8/image/upload/v1700373792/lvu8ozmu9v86sxcxr1rg.webp');
+  
   const upload = async () => {
     try {
       setShowLoader(true);
@@ -35,14 +36,35 @@ const SignUp = ({ setLoginForm, setShowLoader }) => {
         "address",
         `${userInfo.address}-${userInfo.pin}-${userInfo.country}`
       );
-      formData.append("image", image);
+      formData.append("image", (image)?image:'');
       const result = await axios.post(
-        "http://localhost:3000/auth/register",
+        `${import.meta.env.VITE_REACT_APP_API}/auth/register`,
         formData
       );
-      setShowLoader(false);
+      toast.success("Signed Up", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+      });
+      setLoginForm(true)
     } catch (error) {
-      console.log("Error:", error);
+      toast.error(error.response.data.message, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+      });
+      console.log(error.response.data.message)
+    }finally{
       setShowLoader(false);
     }
   };
@@ -74,9 +96,8 @@ const SignUp = ({ setLoginForm, setShowLoader }) => {
               }}
             >
               <img
-                src={image ? URL.createObjectURL(image) : ""}
+                src={!(typeof image==='string') ? URL.createObjectURL(image) : image}
                 alt="Choose an Image"
-                className="h-[100%]"
               />
             </div>
           </label>

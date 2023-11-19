@@ -8,18 +8,11 @@ const Product_Router = require("./routes/ProductRouter");
 const Cart_Router = require("./routes/CartRouter");
 const Order_Router = require("./routes/Order_Router");
 const fileUpload = require('express-fileupload');
-const cloudinary = require('cloudinary').v2;
-
 
 app.use(express.json());
 dotenv.config();
 app.use(cors());
 app.use(fileUpload())
-
-
-
-
-
 
 app.use("/auth", Auth_router);
 app.use("/product", Product_Router);

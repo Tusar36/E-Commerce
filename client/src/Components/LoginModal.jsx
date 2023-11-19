@@ -29,7 +29,7 @@ const LoginModal = ({ showModal, setShowModal }) => {
             </button>
           </div>
           {LoginForm ? (
-            <Login setLoginForm={setLoginForm} />
+            <Login setLoginForm={setLoginForm} setShowLoader={setShowLoader} setShowModal={setShowModal}/>
           ) : (
             <SignUp setLoginForm={setLoginForm} setShowLoader={setShowLoader} />
           )}
