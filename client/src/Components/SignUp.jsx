@@ -30,7 +30,7 @@ const SignUp = ({ setLoginForm, setShowLoader }) => {
       setShowLoader(true);
       const formData = new FormData();
       formData.append("name", userInfo.name);
-      formData.append("email", userInfo.email);
+      formData.append("email", userInfo.email.trim(' '));
       formData.append("password", userInfo.password);
       formData.append(
         "address",

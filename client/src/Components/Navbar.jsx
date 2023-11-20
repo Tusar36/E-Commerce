@@ -5,7 +5,7 @@ import ListIcon from "@mui/icons-material/List";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { userContext } from "../Context/UserContext";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { toast } from "react-toastify";
@@ -17,7 +17,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="navBar">
-        <div className="text-2xl h-full flex items-center"><p>Logo</p></div>
+        <div className="text-2xl h-full flex items-center">
+          <p>Logo</p>
+        </div>
         <div className="gap-7 hidden md:flex">
           <NavLink to="/" className="nav-items">
             <HomeIcon />
@@ -83,9 +85,19 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      {showProfileDropdown && (
-        <div className="w-[100vw] sticky top-[4.7rem] text-white flex justify-end">
+      {
+        <div
+          className={`w-[100vw] fixed top-[4.8rem] text-white flex justify-end transition delay-75${
+            showProfileDropdown ? "translate-x-0" : " translate-x-full"
+          }`}
+        >
           <div className="w-[200px] flex flex-col gap-3 justify-self-end bg-indigo-500">
+            {UserInfo.isAdmin && (
+              <Link to='/admin/dashboard' className="nav-items flex gap-4 w-[100%] hover:cursor-pointer">
+                DashBoard
+              </Link>
+            )}
+
             <div
               className="nav-items flex gap-4 w-[100%] hover:cursor-pointer"
               onClick={() => {
@@ -108,7 +120,7 @@ const Navbar = () => {
                   progress: undefined,
                   theme: "dark",
                 });
-                setshowProfileDropdown(false)
+                setshowProfileDropdown(false);
               }}
             >
               <p className="mr-3">Log Out</p>
@@ -116,7 +128,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      )}
+      }
       {showModal && (
         <LoginModal showModal={showModal} setShowModal={setShowModal} />
       )}
@@ -138,7 +150,7 @@ const Profile = ({ showProfileDropdown, setShowProfileDropdown }) => {
   return (
     <>
       <div
-        className=" w-[50px] h-[50px] p-0 border-2 border-white rounded-full hover:cursor-pointer"
+        className=" w-[45px] h-[45px] p-0 border-2 border-white rounded-full hover:cursor-pointer"
         onClick={showProfile}
       >
         <img

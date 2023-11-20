@@ -39,7 +39,7 @@ const Login = ({ setLoginForm, setShowLoader,setShowModal }) => {
       );
       setUserInfo({
         name: resultCheckLogin.data.name,
-        email: resultCheckLogin.data.email,
+        email: resultCheckLogin.data.email.trim(' '),
         image: resultCheckLogin.data.image.url,
         _id: resultCheckLogin.data._id,
         isLogined: resultCheckLogin.data.isLogined,
