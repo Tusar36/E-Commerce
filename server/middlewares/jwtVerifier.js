@@ -8,7 +8,7 @@ const jwtVerifier = async (req, res, next) => {
   }
   await jwt.verify(token, process.env.JWT_TOKEN, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: "Invalid token" });
+      return res.status(200).json({ message: "Invalid token" });
     }
 
     req.userID = decoded;

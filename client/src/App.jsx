@@ -8,11 +8,13 @@ import { userContext } from "./Context/UserContext";
 import axios from "axios";
 import Loader from "./Components/Loader";
 import DashBoard from "./Components/DashBoard";
-import Error from './Components/Error'
+import Error from "./Components/Error";
+import DashBoardProduct from "./Components/DashBoardProduct";
+import Admin from "./Components/Admin";
 const App = () => {
   const { UserInfo, setUserInfo } = useContext(userContext);
   const [showLoader, setShowLoader] = useState(false);
-  // const [error]
+  const [error, setError] = useState(false);
   const checkLogin = async () => {
     try {
       setShowLoader(true);
@@ -24,6 +26,7 @@ const App = () => {
           },
         }
       );
+      setShowLoader(false);
       setUserInfo({
         name: result.data.name,
         email: result.data.email,
@@ -32,8 +35,12 @@ const App = () => {
         isLogined: result.data.isLogined,
         isAdmin: result.data.isAdmin,
       });
+    } catch (e) {
       setShowLoader(false);
-    } catch (error) {}
+      setError(true);
+    } finally {
+      setShowLoader(false);
+    }
   };
 
   useEffect(() => {
@@ -42,17 +49,29 @@ const App = () => {
 
   return !showLoader ? (
     <>
-      <Router>
-        <Navbar />
-        {/* <LoaderModal/> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/" element={<Home />} />
-          {UserInfo.isAdmin&&<Route path="/admin/dashboard" element={<DashBoard/>}/>}
-          <Route path="*" element={<Error status={404} message={'Page not found'}/>}/>
-        </Routes>
-      </Router>
+      {error ? (
+        <Error message={"Network Error"} />
+      ) : (
+        <Router>
+          <Navbar />
+          {/* <LoaderModal/> */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/" element={<Home />} />
+            {UserInfo.isAdmin && (
+              <Route path="/admin" element={<Admin />}>
+                <Route path="product" element={<DashBoardProduct />} />
+                <Route path="dashboard" element={<DashBoard />} />
+              </Route>
+            )}
+            <Route
+              path="*"
+              element={<Error status={404} message={"Page not found"} />}
+            />
+          </Routes>
+        </Router>
+      )}
     </>
   ) : (
     <Loader />

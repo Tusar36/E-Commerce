@@ -87,7 +87,7 @@ const Navbar = () => {
       )}
       {
         <div
-          className={`w-[100vw] fixed top-[4.8rem] text-white flex justify-end transition delay-75${
+          className={`w-[100vw] fixed top-[4.8rem] z-50 text-white flex justify-end transition delay-75${
             showProfileDropdown ? "translate-x-0" : " translate-x-full"
           }`}
         >
