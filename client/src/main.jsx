@@ -14,6 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       newestOnTop={false}
       rtl={false}
       theme="dark"
+      className={'z-[9999999999999999999999999999999]'}
     />
     <App />
     <ToastContainer />

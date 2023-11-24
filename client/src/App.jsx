@@ -16,31 +16,35 @@ const App = () => {
   const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState(false);
   const checkLogin = async () => {
-    try {
-      setShowLoader(true);
-      const result = await axios.get(
-        `${import.meta.env.VITE_REACT_APP_API}/auth/checkLogin`,
-        {
-          headers: {
-            auth: localStorage.getItem("token"),
-          },
-        }
-      );
-      setShowLoader(false);
-      setUserInfo({
-        name: result.data.name,
-        email: result.data.email,
-        image: result.data.image.url,
-        _id: result.data._id,
-        isLogined: result.data.isLogined,
-        isAdmin: result.data.isAdmin,
-      });
-    } catch (e) {
-      setShowLoader(false);
-      setError(true);
-    } finally {
-      setShowLoader(false);
+    if(localStorage.getItem("token")){
+      try {
+        setShowLoader(true);
+        const result = await axios.get(
+          `${import.meta.env.VITE_REACT_APP_API}/auth/checkLogin`,
+          {
+            headers: {
+              auth: localStorage.getItem("token"),
+            },
+          }
+        );
+        setShowLoader(false);
+        setUserInfo({
+          name: result.data.name,
+          email: result.data.email,
+          image: result.data.image.url,
+          _id: result.data._id,
+          isLogined: result.data.isLogined,
+          isAdmin: result.data.isAdmin,
+        });
+      } catch (e) {
+        setShowLoader(false);
+        setError(true);
+        console.log(e)
+      } finally {
+        setShowLoader(false)
+      }
     }
+    
   };
 
   useEffect(() => {

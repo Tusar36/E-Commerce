@@ -5,8 +5,9 @@ import LoaderModal from "./LoaderModal";
 const LoginModal = ({ showModal, setShowModal }) => {
   const [LoginForm, setLoginForm] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
+
   return (
-    <>
+    < >
       {showLoader && (
         <div className="fixed top-0 w-screen h-screen z-10">
           <LoaderModal />
