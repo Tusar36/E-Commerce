@@ -1,14 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminNav from "./AdminNav";
-import MessageModal from './MessageModal'
 const Admin = () => {
   return (
-    
-    <div className="flex ">
+    <div className="">
       <AdminNav />
-      <div className="min-h-screen overflow-auto w-[100%]">
-        
+      <div className="min-h-screen overflow-auto w-[100%] border border-gray-300">
         <Outlet />
       </div>
     </div>

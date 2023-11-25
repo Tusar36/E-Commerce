@@ -7,27 +7,29 @@ import { useState, useContext, useEffect } from "react";
 import { userContext } from "./Context/UserContext";
 import axios from "axios";
 import Loader from "./Components/Loader";
-import DashBoard from "./Components/DashBoard";
+import DashBoard from "./Components/Admin/DashBoard";
 import Error from "./Components/Error";
-import DashBoardProduct from "./Components/DashBoardProduct";
-import Admin from "./Components/Admin";
+import DashBoardProduct from "./Components/Admin/DashBoardProduct";
+import Admin from "./Components/Admin/Admin";
 const App = () => {
   const { UserInfo, setUserInfo } = useContext(userContext);
   const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState(false);
   const checkLogin = async () => {
-    if(localStorage.getItem("token")){
-      try {
-        setShowLoader(true);
-        const result = await axios.get(
-          `${import.meta.env.VITE_REACT_APP_API}/auth/checkLogin`,
-          {
-            headers: {
-              auth: localStorage.getItem("token"),
-            },
-          }
-        );
-        setShowLoader(false);
+    try {
+      setShowLoader(true);
+      const result = await axios.get(
+        `${import.meta.env.VITE_REACT_APP_API}/auth/checkLogin`,
+        {
+          headers: {
+            auth: localStorage.getItem("token")
+              ? localStorage.getItem("token")
+              : " ",
+          },
+        }
+      );
+      setShowLoader(false);
+      if (localStorage.getItem("token")) {
         setUserInfo({
           name: result.data.name,
           email: result.data.email,
@@ -36,15 +38,14 @@ const App = () => {
           isLogined: result.data.isLogined,
           isAdmin: result.data.isAdmin,
         });
-      } catch (e) {
-        setShowLoader(false);
-        setError(true);
-        console.log(e)
-      } finally {
-        setShowLoader(false)
       }
+    } catch (e) {
+      setShowLoader(false);
+      setError(true);
+      console.log(e);
+    } finally {
+      setShowLoader(false);
     }
-    
   };
 
   useEffect(() => {

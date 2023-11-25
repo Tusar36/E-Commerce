@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import Loader from "./Loader";
+import Loader from "../Loader";
 import SearchIcon from "@mui/icons-material/Search";
-import MessageModal from "./MessageModal";
-import millify from 'millify'
-const DashBoardProduct = () => {
+import millify from "millify";
+const ProductList = () => {
   const [data, setData] = useState([]);
   const [productList, setProductList] = useState([]);
   const [showLoader, setShowLoader] = useState(true);
   const [showModal, setShowModal] = useState(false);
+
   const fetchProducts = async () => {
     try {
       setShowLoader(true);
@@ -20,6 +20,7 @@ const DashBoardProduct = () => {
       setData(result.data.products);
       setProductList(result.data.products);
     } catch (error) {
+      console.log(error);
     } finally {
       setShowLoader(false);
     }
@@ -48,16 +49,16 @@ const DashBoardProduct = () => {
   }, []);
   return (
     <>
-      <div className="p-5">
+      <div>
         {!showLoader ? (
           <div>
-            <div className="w-[40%] h-[50px] px-4 flex border border-black m-auto mb-4 items-center gap-3">
+            <div className="w-[70%] h-[50px] px-4 flex border border-black m-auto mb-4 items-center gap-3 ">
               <SearchIcon />
               <input
                 type="text"
                 name=""
                 id=""
-                className="outline-none "
+                className="outline-none w-[100%]  text-xl "
                 placeholder="Search Products"
                 onChange={searchHandler}
               />
@@ -65,11 +66,11 @@ const DashBoardProduct = () => {
             <table className="w-full ">
               <thead>
                 <tr>
-                  <th className="border border-gray-500 p-4">Product</th>
-                  <th className="border border-gray-500 p-4">Amount</th>
-                  <th className="border border-gray-500 p-4">Stock</th>
-                  <th className="border border-gray-500 p-4">Rating</th>
-                  <th className="border border-gray-500 p-4">Edit</th>
+                  <th className="bg-red-500 text-white p-4">Amount</th>
+                  <th className="bg-red-500 text-white p-4">Product</th>
+                  <th className="bg-red-500 text-white p-4">Stock</th>
+                  <th className="bg-red-500 text-white p-4">Rating</th>
+                  <th className="bg-red-500 text-white p-4">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,7 +81,7 @@ const DashBoardProduct = () => {
                         {e.name}
                       </td>
                       <td className="p-3 text-center border border-gray-300 ">
-                        {millify(e.price-(e.price * (e.discount / 100)))} INR
+                        {millify(e.price - e.price * (e.discount / 100))} INR
                       </td>
                       <td className="p-3 text-center border border-gray-300 ">
                         {e.stock}
@@ -122,4 +123,4 @@ const DashBoardProduct = () => {
   );
 };
 
-export default DashBoardProduct;
+export default ProductList;

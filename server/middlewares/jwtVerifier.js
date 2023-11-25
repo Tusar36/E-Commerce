@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const jwtVerifier = async (req, res, next) => {
   const token = req.headers["auth"];
   if (!token) {
-    return res.status(401).json({
+    return res.status(200).json({
       message: "Please provide an authorization token",
     });
   }

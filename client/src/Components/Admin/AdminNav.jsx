@@ -7,7 +7,7 @@ import ViewListIcon from "@mui/icons-material/ViewList";
 const AdminNav = () => {
   return (
     <>
-      <nav className=" bg-indigo-500 w-72 h-screen flex flex-col gap-4 ">
+      <nav className=" bg-indigo-600  w-full flex gap-4 justify-center">
         <NavLink
           className="p-4 flex justify-center items-center text-white gap-3"
           to="dashboard"
