@@ -68,7 +68,7 @@ const Navbar = () => {
       </nav>
 
       {showDropdown && (
-        <div className="sticky top-[4.7rem] border border-black block md:hidden bg-indigo-500 opacity-70 text-white">
+        <div className="sticky top-[4.7rem] border border-black block md:hidden bg-indigo-600 opacity-70 text-white">
           <div className="w-[100%] flex flex-col gap-3">
             <NavLink to="/" className="nav-items">
               <HomeIcon />
@@ -91,7 +91,7 @@ const Navbar = () => {
             showProfileDropdown ? "translate-x-0" : " translate-x-full"
           }`}
         >
-          <div className="w-[200px] flex flex-col gap-3 justify-self-end bg-indigo-500">
+          <div className="w-[200px] flex flex-col gap-3 justify-self-end bg-indigo-600">
             {UserInfo.isAdmin && (
               <Link
                 to="/admin/dashboard"

@@ -5,11 +5,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import Loader from "../Loader";
 import SearchIcon from "@mui/icons-material/Search";
 import millify from "millify";
-const ProductList = () => {
+import ProductEditModal from "./ProductEditModal";
+const ProductList = ({ change }) => {
   const [data, setData] = useState([]);
   const [productList, setProductList] = useState([]);
   const [showLoader, setShowLoader] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [edit, setEdit] = useState({});
+  console.log(edit);
 
   const fetchProducts = async () => {
     try {
@@ -46,9 +49,10 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [change]);
   return (
     <>
+      {/* <ProductEditModal /> */}
       <div>
         {!showLoader ? (
           <div>
@@ -66,8 +70,8 @@ const ProductList = () => {
             <table className="w-full ">
               <thead>
                 <tr>
-                  <th className="bg-red-500 text-white p-4">Amount</th>
                   <th className="bg-red-500 text-white p-4">Product</th>
+                  <th className="bg-red-500 text-white p-4">Amount</th>
                   <th className="bg-red-500 text-white p-4">Stock</th>
                   <th className="bg-red-500 text-white p-4">Rating</th>
                   <th className="bg-red-500 text-white p-4">Actions</th>
@@ -76,8 +80,8 @@ const ProductList = () => {
               <tbody>
                 {productList.map((e) => {
                   return (
-                    <tr key={e._id}>
-                      <td className="p-3 text-center border border-gray-300 ">
+                    <tr key={e._id} className="">
+                      <td className="p-3 text-center border border-gray-300 max-w-[50%]">
                         {e.name}
                       </td>
                       <td className="p-3 text-center border border-gray-300 ">
@@ -89,7 +93,7 @@ const ProductList = () => {
                       <td className="p-3 text-center border-y  border-gray-300 ">
                         {e.rating.toFixed(2)}
                       </td>
-                      <td className="p-3 text-center border border-gray-300 flex gap-2 justify-center">
+                      <td className="p-3 text-center flex gap-2 justify-center">
                         <button
                           className=" p-2 bg-red-600 rounded-lg text-white"
                           value={e._id}
@@ -103,7 +107,7 @@ const ProductList = () => {
                           className=" p-2 bg-green-600 rounded-lg text-white"
                           value={e._id}
                           onClick={() => {
-                            console.log(e._id);
+                            setEdit(e);
                           }}
                         >
                           <EditIcon />

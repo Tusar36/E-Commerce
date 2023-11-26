@@ -9,7 +9,7 @@
   @apply text-xl outline-none py-3 pr-3 w-[80%];
 }
 .navBar {
-  @apply w-screen flex bg-indigo-500 p-4 justify-between text-white sticky top-0 md:flex;
+  @apply w-screen flex bg-indigo-600 p-4 justify-between text-white sticky top-0 md:flex;
 }
 .nav-Button {
   @apply cursor-pointer nav-items bg-white text-black;
