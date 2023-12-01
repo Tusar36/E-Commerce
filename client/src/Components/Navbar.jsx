@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="navBar">
-        <div className="text-2xl h-full flex items-center">
+        <div className="text-2xl h-full flex items-center text-indigo-600">
           <p>Logo</p>
         </div>
         <div className="gap-7 hidden md:flex">
@@ -68,7 +68,7 @@ const Navbar = () => {
       </nav>
 
       {showDropdown && (
-        <div className="sticky top-[4.7rem] border border-black block md:hidden bg-indigo-600 opacity-70 text-white">
+        <div className="fixed w-full top-[4.7rem]  block md:hidden bg-white text-indigo-600 border-b border-gray-700">
           <div className="w-[100%] flex flex-col gap-3">
             <NavLink to="/" className="nav-items">
               <HomeIcon />
@@ -91,7 +91,7 @@ const Navbar = () => {
             showProfileDropdown ? "translate-x-0" : " translate-x-full"
           }`}
         >
-          <div className="w-[200px] flex flex-col gap-3 justify-self-end bg-indigo-600">
+          <div className="w-[200px] flex flex-col gap-3 justify-self-end bg-white text-indigo-600 border-b border-l border-gray-500">
             {UserInfo.isAdmin && (
               <Link
                 to="/admin/dashboard"

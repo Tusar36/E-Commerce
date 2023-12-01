@@ -7,9 +7,6 @@ const DashBoardProduct = () => {
   return (
     <>
       <div className="p-5">
-        <div className="mb-10">
-          <AddProducts setChange={setChange} />
-        </div>
         <ProductList change={change} />
       </div>
     </>

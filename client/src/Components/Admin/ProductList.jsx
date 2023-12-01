@@ -54,6 +54,7 @@ const ProductList = ({ change }) => {
     <>
       {/* <ProductEditModal /> */}
       <div>
+        {showModal && <ProductEditModal />}
         {!showLoader ? (
           <div>
             <div className="w-[70%] h-[50px] px-4 flex border border-black m-auto mb-4 items-center gap-3 ">
@@ -108,6 +109,7 @@ const ProductList = ({ change }) => {
                           value={e._id}
                           onClick={() => {
                             setEdit(e);
+                            setShowModal(!showModal);
                           }}
                         >
                           <EditIcon />

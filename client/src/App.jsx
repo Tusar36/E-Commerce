@@ -11,6 +11,7 @@ import DashBoard from "./Components/Admin/DashBoard";
 import Error from "./Components/Error";
 import DashBoardProduct from "./Components/Admin/DashBoardProduct";
 import Admin from "./Components/Admin/Admin";
+import AddProducts from "./Components/Admin/AddProducts";
 const App = () => {
   const { UserInfo, setUserInfo } = useContext(userContext);
   const [showLoader, setShowLoader] = useState(false);
@@ -66,7 +67,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             {UserInfo.isAdmin && (
               <Route path="/admin" element={<Admin />}>
-                <Route path="product" element={<DashBoardProduct />} />
+                <Route path="product/add" element={<AddProducts />} />
+                <Route path="product/list" element={<DashBoardProduct />} />
                 <Route path="dashboard" element={<DashBoard />} />
               </Route>
             )}

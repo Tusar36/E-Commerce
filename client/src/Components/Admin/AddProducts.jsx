@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import axios from "axios";
 import Loader from "../LoaderModal";
 import { toast } from "react-toastify";
-const AddProducts = ({ setChange }) => {
-  const [dropDown, setDropDown] = useState(false);
+const AddProducts = () => {
   const [name, setName] = useState("");
   const [Description, setDescription] = useState("");
   const [stock, setStock] = useState("");
@@ -24,7 +21,6 @@ const AddProducts = ({ setChange }) => {
   ];
 
   const Uplaod = async () => {
-    let x = 0;
     const formdata = new FormData();
     formdata.append("name", name);
     formdata.append("description", Description);
@@ -41,8 +37,6 @@ const AddProducts = ({ setChange }) => {
         `${import.meta.env.VITE_REACT_APP_API}/product/create`,
         formdata
       );
-      setChange(x + 1);
-      x = x + 1;
       toast.success("Product Added", {
         position: "top-center",
         autoClose: 2000,
@@ -72,25 +66,7 @@ const AddProducts = ({ setChange }) => {
   return (
     <>
       {showLoader && <Loader />}
-      <div
-        className="w-full flex justify-center hover:cursor-pointer bg-indigo-500 text-white border-0"
-        onClick={() => {
-          setDropDown(!dropDown);
-        }}
-      >
-        <div className="w-[100%] border  p-4 text-xl flex justify-between items-center">
-          <p>Add Products</p>
-          <p
-            className="hover:cursor-pointer"
-            onClick={() => {
-              setDropDown(!dropDown);
-            }}
-          >
-            {!dropDown ? <ExpandMoreIcon /> : <ExpandLessIcon />}
-          </p>
-        </div>
-      </div>
-      {dropDown && (
+      <div className="p-5">
         <div className="w-full flex justify-center   mb-10">
           <div className="w-[100%] flex flex-col justify-center gap-4 p-4 border border-gray-500">
             <input
@@ -204,7 +180,7 @@ const AddProducts = ({ setChange }) => {
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
