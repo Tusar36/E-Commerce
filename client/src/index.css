@@ -25,3 +25,20 @@
 .active {
   @apply text-red-500 border-b-2;
 }
+.home-product-container {
+  @apply w-full h-full p-5 flex flex-wrap justify-center gap-7 py-6;
+}
+
+.product-card {
+  @apply w-72 border border-black min-h-[24rem] hover:cursor-pointer hover:scale-105 transition-transform duration-300 bg-white p-2;
+}
+.product-card-image {
+  @apply w-full h-[60%] border border-black;
+}
+
+.product-card-name {
+}
+.product-card-price {
+}
+.product-card-rating {
+}
