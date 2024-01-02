@@ -8,6 +8,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link, NavLink } from "react-router-dom";
 import { userContext } from "../Context/UserContext";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { toast } from "react-toastify";
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,53 +18,65 @@ const Navbar = () => {
   const { UserInfo, setUserInfo } = useContext(userContext);
   return (
     <>
-      <nav className="navBar">
-        <div className="text-2xl h-full flex items-center text-indigo-600">
-          <p>Logo</p>
-        </div>
-        <div className="gap-7 hidden md:flex">
-          <NavLink to="/" className="nav-items">
-            <HomeIcon />
-            Home
-          </NavLink>
-          <NavLink to="/products" className="nav-items">
-            <ListIcon />
-            Products
-          </NavLink>
-          <NavLink to="/about" className="nav-items">
-            <InfoIcon />
-            About
-          </NavLink>
-        </div>
+      <nav className="navBar min-h-[4rem] py-3 sticky top-0 z-[100000]">
+        <div className="flex items-center text-xl h-[3rem]">
+          <div className="flex justify-center items-center mx-8 w-20">
+            <NavLink to="/" className="text-3xl  text-indigo-600">
+              <p className="text-3xl  text-indigo-600  ">Logo</p>
+            </NavLink>
+          </div>
 
-        <div className="flex gap-4">
-          {!UserInfo.isLogined ? (
+          <div className="flex bg-gray-200 px-3 py-3">
+            <div className="flex justify-center items-center px-2 text-gray-500">
+              <SearchIcon />
+            </div>
+            <input
+              type="text"
+              placeholder="Search For Products, Brands And More "
+              className="w-96 text-black bg-transparent outline-none"
+            />
+          </div>
+
+          <div className="flex gap-4  h-full mx-4 ">
+            {!UserInfo.isLogined ? (
+              <div
+                className="nav-Button flex items-center gap-3 px-5 hover:text-white hover:bg-indigo-600 text-xl"
+                onClick={() => {
+                  setShowModal(true);
+                }}
+              >
+                <AccountCircleIcon /> Login
+              </div>
+            ) : (
+              <Profile
+                setShowProfileDropdown={setshowProfileDropdown}
+                showProfileDropdown={showProfileDropdown}
+              />
+            )}
+
             <div
-              className="nav-Button flex items-center"
+              className=" cursor-pointer nav-items border rounded-md border-black text-black block md:hidden"
               onClick={() => {
-                setShowModal(true);
+                if (!showDropdown) {
+                  setShowDropdown(true);
+                } else {
+                  setShowDropdown(false);
+                }
               }}
             >
-              Login <LoginIcon />
+              <MenuIcon />
             </div>
-          ) : (
-            <Profile
-              setShowProfileDropdown={setshowProfileDropdown}
-              showProfileDropdown={showProfileDropdown}
-            />
-          )}
+          </div>
 
-          <div
-            className=" cursor-pointer nav-items border rounded-md border-black text-black block md:hidden"
-            onClick={() => {
-              if (!showDropdown) {
-                setShowDropdown(true);
-              } else {
-                setShowDropdown(false);
-              }
-            }}
-          >
-            <MenuIcon />
+          <div className="gap-7 hidden md:flex">
+            <NavLink to="/products" className="nav-items">
+              <ListIcon />
+              Products
+            </NavLink>
+            <NavLink to="/about" className="nav-items">
+              <InfoIcon />
+              About
+            </NavLink>
           </div>
         </div>
       </nav>

@@ -55,30 +55,32 @@ const App = () => {
 
   return !showLoader ? (
     <>
-      {error ? (
-        <Error message={"Network Error"} />
-      ) : (
-        <Router>
-          <Navbar />
-          {/* <LoaderModal/> */}
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/" element={<Home />} />
-            {UserInfo.isAdmin && (
-              <Route path="/admin" element={<Admin />}>
-                <Route path="product/add" element={<AddProducts />} />
-                <Route path="product/list" element={<DashBoardProduct />} />
-                <Route path="dashboard" element={<DashBoard />} />
-              </Route>
-            )}
-            <Route
-              path="*"
-              element={<Error status={404} message={"Page not found"} />}
-            />
-          </Routes>
-        </Router>
-      )}
+      <div className=" bg-gray-200">
+        {error ? (
+          <Error message={"Network Error"} />
+        ) : (
+          <Router>
+            <Navbar />
+            {/* <LoaderModal/> */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/" element={<Home />} />
+              {UserInfo.isAdmin && (
+                <Route path="/admin" element={<Admin />}>
+                  <Route path="product/add" element={<AddProducts />} />
+                  <Route path="product/list" element={<DashBoardProduct />} />
+                  <Route path="dashboard" element={<DashBoard />} />
+                </Route>
+              )}
+              <Route
+                path="*"
+                element={<Error status={404} message={"Page not found"} />}
+              />
+            </Routes>
+          </Router>
+        )}
+      </div>
     </>
   ) : (
     <Loader />

@@ -2,14 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-family: inter_regular, fallback-inter_regular, Arial, sans-serif;
+}
 .nav-items {
-  @apply py-2 px-4 text-lg flex items-center gap-1 text-indigo-600;
+  @apply text-indigo-600 flex justify-center items-center;
 }
 .input-field {
   @apply text-xl outline-none py-3 pr-3 w-[80%];
 }
 .navBar {
-  @apply w-screen flex bg-white  p-4 justify-between text-white sticky top-0 md:flex border-b border-gray-400;
+  @apply w-full flex justify-center  bg-white;
 }
 .nav-Button {
   @apply cursor-pointer nav-items bg-white text-black;
@@ -22,9 +25,9 @@
   @apply w-[80%] border  border-black flex justify-between;
 }
 
-.active {
+/* .active {
   @apply text-red-500 border-b-2;
-}
+} */
 .home-product-container {
   @apply w-full h-full p-5 flex flex-wrap justify-center gap-7 py-6;
 }
