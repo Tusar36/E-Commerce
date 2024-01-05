@@ -4,7 +4,7 @@ import AdminNav from "./AdminNav";
 import "./admin-style.css";
 const Admin = () => {
   return (
-    <div className=" flex">
+    <div className=" flex bg-white">
       <AdminNav />
       <div className="min-h-screen overflow-auto w-[100%] border border-gray-300">
         <Outlet />

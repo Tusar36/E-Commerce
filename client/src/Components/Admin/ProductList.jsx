@@ -12,8 +12,6 @@ const ProductList = ({ change }) => {
   const [showLoader, setShowLoader] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [edit, setEdit] = useState({});
-  console.log(edit);
-
   const fetchProducts = async () => {
     try {
       setShowLoader(true);
@@ -54,7 +52,9 @@ const ProductList = ({ change }) => {
     <>
       {/* <ProductEditModal /> */}
       <div>
-        {showModal && <ProductEditModal />}
+        {showModal && (
+          <ProductEditModal data={edit} setShowModal={setShowModal} />
+        )}
         {!showLoader ? (
           <div>
             <div className="w-[70%] h-[50px] px-4 flex border border-black m-auto mb-4 items-center gap-3 ">

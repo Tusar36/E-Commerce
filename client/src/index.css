@@ -12,7 +12,7 @@ html {
   @apply text-xl outline-none py-3 pr-3 w-[80%];
 }
 .navBar {
-  @apply w-full flex justify-center  bg-white;
+  @apply w-full border-b-2 border-gray-200 flex justify-center h-[5rem]  sticky top-0   items-center text-xl  z-[2];
 }
 .nav-Button {
   @apply cursor-pointer nav-items bg-white text-black;
@@ -33,15 +33,24 @@ html {
 }
 
 .product-card {
-  @apply w-72 border border-black min-h-[24rem] hover:cursor-pointer hover:scale-105 transition-transform duration-300 bg-white p-2;
+  @apply w-72 border pb-8  hover:cursor-pointer hover:scale-105 transition-transform duration-300 bg-white p-2;
 }
 .product-card-image {
-  @apply w-full h-[60%] border border-black;
+  @apply w-full h-[60%] border;
 }
 
 .product-card-name {
+  @apply text-[20px] text-black font-semibold w-full text-center my-2;
 }
 .product-card-price {
+  @apply text-[20px] text-indigo-600;
+}
+.product-card-discount {
+  @apply text-red-700 text-sm;
+}
+.product-card-original-price {
+  @apply line-through text-sm text-gray-400;
 }
 .product-card-rating {
+  @apply text-yellow-500 text-lg w-full text-center;
 }

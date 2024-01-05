@@ -19,7 +19,10 @@ const AdminNav = () => {
           DashBoard
         </NavLink>
 
-        <div className="adminNavElements" onClick={() => setExpand(!expand)}>
+        <div
+          className="adminNavElements cursor-pointer"
+          onClick={() => setExpand(!expand)}
+        >
           <EditIcon /> Products{" "}
           {!expand ? <ExpandMoreIcon /> : <ExpandLessIcon />}
         </div>

@@ -7,16 +7,16 @@ const LoginModal = ({ showModal, setShowModal }) => {
   const [showLoader, setShowLoader] = useState(false);
 
   return (
-    < >
+    <>
       {showLoader && (
-        <div className="fixed top-0 w-screen h-screen z-10">
+        <div className="fixed top-0 w-screen h-screen  z-[9999999999999999999999999999999]">
           <LoaderModal />
         </div>
       )}
-      <div className="fixed top-0 w-screen h-screen  transition opacity-80 bg-black "></div>
+      <div className="fixed top-0 w-screen h-screen  transition opacity-80 bg-black  z-10"></div>
       {/* Login Form  and Register Form*/}
 
-      <div className="z-1 fixed top-0 w-screen h-screen  flex justify-center items-center">
+      <div className="z-10 fixed top-0 w-screen h-screen  flex justify-center items-center">
         <div className="w-[350px] h-[600px] bg-white overflow-auto pb-10 sm:w-[500px]">
           <div className="flex justify-end">
             {/* Close button */}
@@ -30,7 +30,11 @@ const LoginModal = ({ showModal, setShowModal }) => {
             </button>
           </div>
           {LoginForm ? (
-            <Login setLoginForm={setLoginForm} setShowLoader={setShowLoader} setShowModal={setShowModal}/>
+            <Login
+              setLoginForm={setLoginForm}
+              setShowLoader={setShowLoader}
+              setShowModal={setShowModal}
+            />
           ) : (
             <SignUp setLoginForm={setLoginForm} setShowLoader={setShowLoader} />
           )}

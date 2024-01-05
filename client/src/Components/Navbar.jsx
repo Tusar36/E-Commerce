@@ -18,26 +18,26 @@ const Navbar = () => {
   const { UserInfo, setUserInfo } = useContext(userContext);
   return (
     <>
-      <nav className="navBar min-h-[4rem] py-3 sticky top-0 z-[100000]">
-        <div className="flex items-center text-xl h-[3rem]">
-          <div className="flex justify-center items-center mx-8 w-20">
-            <NavLink to="/" className="text-3xl  text-indigo-600">
-              <p className="text-3xl  text-indigo-600  ">Logo</p>
+      <div className="navBar ">
+        <div className="w-full h-full bg-white flex py-3 justify-center">
+          <div className="text-center flex items-center w-48">
+            <NavLink to="/" className="text-3xl w-full  text-indigo-600">
+              <p className="text-3xl  text-indigo-600 w-full ">Digital Nest</p>
             </NavLink>
           </div>
 
-          <div className="flex bg-gray-200 px-3 py-3">
+          <div className="flex bg-gray-200 px-3 py-3 w-[60%]">
             <div className="flex justify-center items-center px-2 text-gray-500">
               <SearchIcon />
             </div>
             <input
               type="text"
               placeholder="Search For Products, Brands And More "
-              className="w-96 text-black bg-transparent outline-none"
+              className="w-[100%] text-black bg-transparent outline-none"
             />
           </div>
 
-          <div className="flex gap-4  h-full mx-4 ">
+          <div className="flex gap-4  h-full mx-4 bg-white">
             {!UserInfo.isLogined ? (
               <div
                 className="nav-Button flex items-center gap-3 px-5 hover:text-white hover:bg-indigo-600 text-xl"
@@ -48,10 +48,57 @@ const Navbar = () => {
                 <AccountCircleIcon /> Login
               </div>
             ) : (
-              <Profile
-                setShowProfileDropdown={setshowProfileDropdown}
-                showProfileDropdown={showProfileDropdown}
-              />
+              <div className=" flex flex-col items-center justify-center">
+                <Profile
+                  setShowProfileDropdown={setshowProfileDropdown}
+                  showProfileDropdown={showProfileDropdown}
+                />
+                <div
+                  className={`absolute transition-all duration-200 -z-[100] ${
+                    showProfileDropdown ? "top-[5rem]" : "top-[-100%]"
+                  }`}
+                >
+                  <div className="w-[200px] justify-center items-center flex flex-col   ">
+                    {UserInfo.isAdmin && (
+                      <Link
+                        to="/admin/dashboard"
+                        className=" flex justify-center items-center  gap-4 w-[100%] hover:cursor-pointer text-white bg-indigo-600 py-4 hover:bg-indigo-700"
+                      >
+                        DashBoard
+                      </Link>
+                    )}
+
+                    <div
+                      className=" flex justify-center items-center  gap-4 w-[100%] hover:cursor-pointer text-white bg-indigo-600 py-4 hover:bg-indigo-700"
+                      onClick={() => {
+                        localStorage.clear();
+                        setUserInfo({
+                          name: "",
+                          email: "",
+                          image: "",
+                          _id: "",
+                          isLogined: false,
+                          isAdmin: false,
+                        });
+                        toast.success("Loged out", {
+                          position: "top-center",
+                          autoClose: 2000,
+                          hideProgressBar: true,
+                          closeOnClick: true,
+                          pauseOnHover: false,
+                          draggable: false,
+                          progress: undefined,
+                          theme: "dark",
+                        });
+                        setshowProfileDropdown(false);
+                      }}
+                    >
+                      <p className="mr-3">Log Out</p>
+                      <LogoutIcon />
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
 
             <div
@@ -69,83 +116,14 @@ const Navbar = () => {
           </div>
 
           <div className="gap-7 hidden md:flex">
-            <NavLink to="/products" className="nav-items">
-              <ListIcon />
-              Products
-            </NavLink>
             <NavLink to="/about" className="nav-items">
               <InfoIcon />
               About
             </NavLink>
           </div>
         </div>
-      </nav>
+      </div>
 
-      {showDropdown && (
-        <div className="fixed w-full top-[4.7rem]  block md:hidden bg-white text-indigo-600 border-b border-gray-700">
-          <div className="w-[100%] flex flex-col gap-3">
-            <NavLink to="/" className="nav-items">
-              <HomeIcon />
-              Home
-            </NavLink>
-            <NavLink to="/products" className="nav-items">
-              <ListIcon />
-              Products
-            </NavLink>
-            <NavLink to="/about" className="nav-items">
-              <InfoIcon />
-              About
-            </NavLink>
-          </div>
-        </div>
-      )}
-      {
-        <div
-          className={`w-[100vw] fixed top-[4.8rem] z-50 text-white flex justify-end transition delay-75${
-            showProfileDropdown ? "translate-x-0" : " translate-x-full"
-          }`}
-        >
-          <div className="w-[200px] flex flex-col gap-3 justify-self-end bg-white text-indigo-600 border-b border-l border-gray-500">
-            {UserInfo.isAdmin && (
-              <Link
-                to="/admin/dashboard"
-                className="nav-items flex gap-4 w-[100%] hover:cursor-pointer"
-              >
-                DashBoard
-              </Link>
-            )}
-
-            <div
-              className="nav-items flex gap-4 w-[100%] hover:cursor-pointer"
-              onClick={() => {
-                localStorage.clear();
-                setUserInfo({
-                  name: "",
-                  email: "",
-                  image: "",
-                  _id: "",
-                  isLogined: false,
-                  isAdmin: false,
-                });
-                toast.success("Loged out", {
-                  position: "top-center",
-                  autoClose: 2000,
-                  hideProgressBar: true,
-                  closeOnClick: true,
-                  pauseOnHover: false,
-                  draggable: false,
-                  progress: undefined,
-                  theme: "dark",
-                });
-                setshowProfileDropdown(false);
-              }}
-            >
-              <p className="mr-3">Log Out</p>
-              <LogoutIcon />
-            </div>
-          </div>
-        </div>
-      }
       {showModal && (
         <LoginModal showModal={showModal} setShowModal={setShowModal} />
       )}
@@ -167,7 +145,7 @@ const Profile = ({ showProfileDropdown, setShowProfileDropdown }) => {
   return (
     <>
       <div
-        className=" w-[45px] h-[45px] p-0 border-2 border-white rounded-full hover:cursor-pointer"
+        className=" w-[45px] h-[45px] p-0 border-2 bg-white border-white rounded-full hover:cursor-pointer"
         onClick={showProfile}
       >
         <img
