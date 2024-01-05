@@ -12,6 +12,7 @@ import Error from "./Components/Error";
 import DashBoardProduct from "./Components/Admin/DashBoardProduct";
 import Admin from "./Components/Admin/Admin";
 import AddProducts from "./Components/Admin/AddProducts";
+import Details from "./Components/Details";
 const App = () => {
   const { UserInfo, setUserInfo } = useContext(userContext);
   const [showLoader, setShowLoader] = useState(false);
@@ -55,7 +56,7 @@ const App = () => {
 
   return !showLoader ? (
     <>
-      <div className=" bg-gray-200">
+      <div className="">
         {error ? (
           <Error message={"Network Error"} />
         ) : (
@@ -65,6 +66,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/detail/:id" element={<Details />} />
               <Route path="/" element={<Home />} />
               {UserInfo.isAdmin && (
                 <Route path="/admin" element={<Admin />}>

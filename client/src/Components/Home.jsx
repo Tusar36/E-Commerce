@@ -3,8 +3,10 @@ import axios from "axios";
 import Card from "./Card";
 import Carousel from "./Carousel";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [result, setResult] = useState([]);
+  const navigate = useNavigate();
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
@@ -32,7 +34,7 @@ const Home = () => {
           Shop Now <ShoppingBagIcon />
         </button>
       </div>
-      <div className="home-product-container ">
+      <div className="home-product-container bg-gray-200 ">
         {result.map((e) => {
           return (
             <Card
@@ -41,6 +43,7 @@ const Home = () => {
               rating={e.rating}
               name={e.name}
               discount={e.discount}
+              _id={e._id}
             />
           );
         })}

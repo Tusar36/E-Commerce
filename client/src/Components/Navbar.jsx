@@ -100,19 +100,6 @@ const Navbar = () => {
                 </div>
               </div>
             )}
-
-            <div
-              className=" cursor-pointer nav-items border rounded-md border-black text-black block md:hidden"
-              onClick={() => {
-                if (!showDropdown) {
-                  setShowDropdown(true);
-                } else {
-                  setShowDropdown(false);
-                }
-              }}
-            >
-              <MenuIcon />
-            </div>
           </div>
 
           <div className="gap-7 hidden md:flex">
