@@ -4,6 +4,7 @@ import Card from "./Card";
 import Carousel from "./Carousel";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { useNavigate } from "react-router-dom";
+import Search from "./Search";
 const Home = () => {
   const [result, setResult] = useState([]);
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Home = () => {
   }, []);
   return (
     <>
+      {/* Carousel */}
       <Carousel />
       <div className="absolute top-[5rem] z-[1] bg-black opacity-90 w-screen h-screen"></div>
       <div className="absolute top-[5rem] z-[1]  w-screen h-screen flex flex-col gap-5 justify-center items-center">
@@ -34,6 +36,9 @@ const Home = () => {
           Shop Now <ShoppingBagIcon />
         </button>
       </div>
+      {/* Search */}
+      <Search />
+      {/* Prouct */}
       <div className="home-product-container bg-gray-200 ">
         {result.map((e) => {
           return (

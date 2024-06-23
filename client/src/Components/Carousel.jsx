@@ -30,9 +30,9 @@ const Carousel = () => {
 
   return (
     <>
-      <div className="relative z-0"></div>
+      {/* <div className="relative z-0"></div> */}
       <div
-        className={`w-screen h-screen transition-all ease-in-out bg-cover bg-center `}
+        className={`w-screen h-screen transition-all duration-200 bg-cover bg-center `}
         style={{
           backgroundImage: `url(${images[imageIndex].url})`,
           opacity: opacity,

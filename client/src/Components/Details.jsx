@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+import Loader from "./Loader";
+import Productcarousel from "./Productcarousel";
 const Details = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [images, setImages] = useState([]);
+  const [descriptionLength, setDescriptionLength] = useState(100);
+  const [description, setDescription] = useState("");
 
-  const [imageIndex, setImageIndex] = useState(0);
-
-  useEffect(() => {
-    let inId = setInterval(() => {
-      setImageIndex(imageIndex !== images.length - 1 ? imageIndex + 1 : 0);
-    }, 6000);
-    return () => clearInterval(inId);
-  }, [imageIndex]);
+  const [loader, setLoader] = useState(true);
 
   const fetchData = async () => {
     const result = await axios.get(
@@ -23,51 +19,56 @@ const Details = () => {
     );
     setData(result.data.findProduct);
     setImages(result.data.findProduct.images.reverse());
+    setDescription(result.data.findProduct.description);
   };
 
   useEffect(() => {
+    setLoader(true);
     fetchData();
-    setImageIndex(0);
-  }, []);
+    setLoader(false);
+  }, [id]);
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <>
       <div className=" w-[70rem] mx-auto my-10 h-[35rem] flex">
-        <div className=" w-[30rem] h-full flex justify-center items-center ">
-          <div className="w-full flex  overflow-hidden relative">
-            <button
-              className="h-[100%] py-3 px-4 absolute  left-0 justify-self-start bg-gray-300 opacity-40 hover:opacity-70  z-[1]"
-              onClick={() => {
-                setImageIndex(
-                  imageIndex != 0 ? imageIndex - 1 : images.length - 1
-                );
-              }}
-            >
-              <ArrowBackIosIcon />
-            </button>
-            <button
-              className="h-[100%] py-3 px-4 absolute right-0  bg-gray-300  opacity-40 hover:opacity-70  z-[1]"
-              onClick={() => {
-                setImageIndex(
-                  imageIndex != images.length - 1 ? imageIndex + 1 : 0
-                );
-              }}
-            >
-              <ArrowForwardIosIcon />
-            </button>
-            {images.map((x) => {
-              return (
-                <img
-                  src={x.url}
-                  style={{ transform: `translateX(${-imageIndex * 100}%)` }}
-                  alt=""
-                  className=" object-cover transition-all duration-200 z-0"
-                />
-              );
-            })}
+        <Productcarousel images={images} />
+        <div className=" w-[40rem] h-full flex flex-col items-center gap-5">
+          <div className="w-full font-semibold text-4xl text-indigo-600 flex justify-center items-center py-5">
+            {data.name}
+          </div>
+          <hr className="w-[90%] bg-gray-400 h-[2px]" />
+          <div className="w-[90%] ">
+            <p>
+              {description.substring(0, descriptionLength)}
+              <span
+                className="text-gray-600 hover:cursor-pointer "
+                onClick={() => {
+                  if (descriptionLength < description.length) {
+                    setDescriptionLength(description.length);
+                  } else {
+                    setDescriptionLength(100);
+                  }
+                }}
+              >
+                {description.length > descriptionLength &&
+                descriptionLength < description.length
+                  ? "...Read More"
+                  : "...Read Less"}
+              </span>
+            </p>
+          </div>
+          <div className="flex">
+            <span className="line-through text-2xl text-gray-400">
+              &#x20B9;{data.price}
+            </span>
+            <span className="text-red-600 text-2xl">-{data.discount}%</span>
+            <span className="text-3xl mx-4">
+              &#x20B9;{data.price - (data.discount / 100) * data.price}
+            </span>
           </div>
         </div>
-        <div className=" w-[40rem] h-full"></div>
       </div>
     </>
   );
